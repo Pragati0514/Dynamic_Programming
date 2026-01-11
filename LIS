@@ -1,0 +1,31 @@
+// Print length of LIS T(C): O(n^2) S(C): O(n)
+
+#include<bits/stdc++.h>
+using namespace std;
+int solve(vector<int>&nums){
+    int n=nums.size();
+    vector<int>subse(n,1);
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<i; j++){
+            if(nums[i]>nums[j])
+                subse[i]=max(subse[i], subse[j]+1);
+        }
+    }
+    int maxi=INT_MIN;
+    for(int j=0;j<n;j++){
+        //cout<<subse[j];
+        maxi=(maxi,subse[j]);
+    }
+    return maxi;
+}
+int main(){
+    int n;
+    cin>> n;
+    vector<int>nums(n);
+    for(int i=0;i<n; i++){
+        cin>>nums[i];
+      
+    }
+     cout<<solve(nums);
+}
